@@ -10,10 +10,9 @@ Deno.serve(async (req) => {
  if (req.method === "GET" && pathname === "/api" && id) {
     
     const kv = await Deno.openKv();
-    await kv.set(["userId", "0"], { name: "Alice", like: 1010100 });
     const entry = await kv.get(["userId", id]);
-    console.log("GETデータ:", entry);
-    return new Response(JSON.stringify(entry.value));
+
+    return new Response(JSON.stringify(entry.value), {headers: {"Content-Type": "application/json"}});
   }
 
   //登録機能
@@ -21,6 +20,7 @@ Deno.serve(async (req) => {
     const data = await req.json();
     console.log("POSTデータ:", data);
     const kv = await Deno.openKv();
+    //UUID生成
     const myUUID = crypto.randomUUID();
     console.log("Random UUID:", myUUID);
     await kv.set(["userId", `${myUUID}`], data);
