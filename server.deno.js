@@ -29,8 +29,8 @@ Deno.serve(async (req) => {
 
   if(req.method === "GET" && pathname === "/all-data"){
     const kv = await Deno.openKv();
-    const allData= [];
-    for await (const entry of kv.list<{key}>({prefix: ["userId"]})) {
+    const allData=[];
+    for await (const entry of kv.list({prefix: ["userId"]})) {
       allData.push(entry);
     }
     return new Response(JSON.stringify(allData), {headers: {"Content-Type": "application/json"}});
