@@ -3,7 +3,7 @@ import { serveDir } from "jsr:@std/http/file-server";
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
-  const user = pathname.slice(1);
+  const userId = pathname.slice(1);
 
   
   //検索機能
@@ -21,10 +21,9 @@ Deno.serve(async (req) => {
     const data = await req.json();
     console.log("POSTデータ:", data);
     const kv = await Deno.openKv();
-    //createUserID
-
-    await kv.set(["userId", `${userId}`], data);
-    return new Response("Data saved successfully");
+    const myUUID = crypto.randomUUID();
+    await kv.set(["userId", `${myUUID}`], data);
+    return new Response(myUUID);
   }
 
 
