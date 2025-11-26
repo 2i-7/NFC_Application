@@ -2,16 +2,17 @@ import { serveDir } from "jsr:@std/http/file-server";
 
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
+  const url = new URL(req.url);
+  const id = url.searchParams.get("id");
   console.log(pathname);
-  const userId = pathname.substring(1);
   
   // //検索機能
-  if (req.method === "GET" && pathname === `/api?id=${userId}`) {
+ if (req.method === "GET" && pathname === "/api" && id) {
     
     const kv = await Deno.openKv();
     await kv.set(["userId", "0"], { name: "Alice", like: 1010100 });
-    const entry = await kv.get(["userId", `${userId}`]);
-
+    const entry = await kv.get(["userId", id]);
+    console.log("GETデータ:", entry);
     return new Response(JSON.stringify(entry.value));
   }
 
