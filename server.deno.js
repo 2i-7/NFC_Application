@@ -7,11 +7,11 @@ Deno.serve(async (req) => {
 
   
   //検索機能
-  if (req.method === "GET" && pathname === `/${user}`) {
+  if (req.method === "GET" && pathname === `/${userId}`) {
     
     const kv = await Deno.openKv();
-    const test = await kv.set(["user", "alice"], { name: "Alice", like: 1010100 });
-    const entry = await kv.get(["user", `${user}`]);
+    await kv.set(["userId", "0"], { name: "Alice", like: 1010100 });
+    const entry = await kv.get(["userId", `${userId}`]);
 
     return new Response(JSON.stringify(entry.value));
   }
@@ -21,7 +21,9 @@ Deno.serve(async (req) => {
     const data = await req.json();
     console.log("POSTデータ:", data);
     const kv = await Deno.openKv();
-    await kv.set(["user", `${data.user}`], data);
+    //createUserID
+
+    await kv.set(["userId", `${userId}`], data);
     return new Response("Data saved successfully");
   }
 
