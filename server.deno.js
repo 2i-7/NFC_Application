@@ -3,11 +3,10 @@ import { serveDir } from "jsr:@std/http/file-server";
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
-  const userId = pathname.slice(1);
-
+  const userId = pathname.substring(1);
   
-  //検索機能
-  if (req.method === "GET" && pathname === `/${userId}`) {
+  // //検索機能
+  if (req.method === "GET" && pathname === `/api?id=${userId}`) {
     
     const kv = await Deno.openKv();
     await kv.set(["userId", "0"], { name: "Alice", like: 1010100 });
@@ -17,11 +16,12 @@ Deno.serve(async (req) => {
   }
 
   //登録機能
-  if (req.method === "POST" && pathname === "/save-data") {
+  if (req.method === "POST" && pathname === "/api/save-data") {
     const data = await req.json();
     console.log("POSTデータ:", data);
     const kv = await Deno.openKv();
     const myUUID = crypto.randomUUID();
+    console.log("Random UUID:", myUUID);
     await kv.set(["userId", `${myUUID}`], data);
     return new Response(myUUID);
   }

@@ -1,4 +1,4 @@
-function profileData(){
+async function profileData(){
     let nameInput = document.getElementById("name")
     let nameValue = nameInput.value;
 
@@ -27,4 +27,12 @@ function profileData(){
 
     console.log("--- 送信データ ---");
     console.log(profileData);
+    resp = await fetch("/api/save-data", {
+        method: "POST",
+        headers: {
+             "Content-Type": "application/json"
+        },
+        body: JSON.stringify(profileData),
+        });
+    console.log(await resp.text());
 }
