@@ -224,10 +224,40 @@ span.tag-label {
 .flex-row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .center {
   display: flex;
   justify-content: center; /* 横中央 */
   margin-bottom: 20px;
+}
+
+.list-tag-input {
+    display: none;
+}
+
+.list-tag-label {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 10px 18px;
+    background-color: #f1f3f5;
+    color: #495057;
+    border-radius: 50px; 
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent; 
+    user-select: none; 
+}
+
+.list-tag-label:active {
+    transform: scale(0.95);
+}
+
+.list-tag-input:checked + .list-tag-label {
+    background-color: #007bff; 
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); 
 }
