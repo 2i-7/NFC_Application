@@ -1,16 +1,19 @@
 window.onload = async function(){
     const urlParam = new URLSearchParams(window.location.search);
-    const userID = urlParam.get('id');
+    const currentViewID = urlParam.get('id');
     
-    console.log("ユーザーID", userID);
+    const myID =  localStorage.getItem("ユーザーID");
 
-    if(!userID){
+    console.log("表示中のID:", currentViewID);
+    console.log("自分のID:", myID);
+
+    if(!currentViewID){
         alert("IDが読み込めません");
         return;
     }
 
     try {
-        const response = await fetch(`/api?id=${userID}`);
+        const response = await fetch(`/api?id=${currentViewID}`);
         const data = await response.json();
 
         console.log("取得したデータ", data);
@@ -21,18 +24,37 @@ window.onload = async function(){
         console.error("エラーが発生しました", error);
         alert("データの取得に失敗しました");
     }
-
     const backBtn = document.getElementById("back-btn");
-    backBtn.onclick = function() {
-        window.location.href = `index.html?id=${encodeURIComponent(userID)}`; 
-    };
-
     const qrBtn = document.getElementById("qr-btn");
-    qrBtn.onclick = function() {
-        window.location.href = `QRcode.html?id=${encodeURIComponent(userID)}`;
+    const myProfileBtn = document.getElementById("my-profile-btn");
+    const allBtn = document.getElementById("all-btn");
+
+    if (currentViewID === myID) {
+        backBtn.style.display = "block";      
+        qrBtn.style.display = "block";         
+        myProfileBtn.style.display = "none";   
+    } else {
+        backBtn.style.display = "none";        
+        qrBtn.style.display = "none";          
+        
+        if (myID) {
+            myProfileBtn.style.display = "block";
+        }
+    }
+    allBtn.style.display = "block";
+
+    backBtn.onclick = function() {
+        window.location.href = `index.html?id=${encodeURIComponent(myID)}`; 
     };
 
-    const allBtn = document.getElementById("all-btn");
+    qrBtn.onclick = function() {
+        window.location.href = `QRcode.html?id=${encodeURIComponent(myID)}`;
+    };
+
+    myProfileBtn.onclick = function() {
+        window.location.href = `display.html?id=${encodeURIComponent(myID)}`;
+    };
+
     allBtn.onclick = function() {
         window.location.href = `list.html`
     }

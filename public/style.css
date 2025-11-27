@@ -151,11 +151,18 @@ button {
     background-color: #5a6268;
 }
 
+#my-profile-btn {
+    background-color: #28a745; /* 緑色 */
+}
+#my-profile-btn:hover {
+    background-color: #218838;
+}
+
 #all-btn {
-    background-color: #6c757d;
+    background-color: #17a2b8;
 }
 #all-btn:hover {
-    background-color: #5a6268;
+    background-color: #138496;
 }
 
 span.tag-label {
