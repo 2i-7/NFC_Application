@@ -114,8 +114,8 @@ button {
     margin-top : 10px;
     margin-left: 10px;
     padding: 10px 18px;
-    background-color: #f1f3f5;
-    color: #495057;
+    background-color: #707981;
+    color: #b9d6f3;
     border-radius: 50px; 
     font-size: 14px;
     font-weight: 500;
@@ -130,9 +130,9 @@ button {
     margin-top : 10px;
     margin-left: 10px;
     padding: 10px 18px;
-    background-color: #f1f3f5;
-    color: #bfdfff;
-    -webkit-text-fill-color: #0455ab;
+    background-color: #5e6e82;
+    color: #43494f;
+    -webkit-text-fill-color: #eef6ff;
     border-radius: 50px; 
     font-size: 14px;
     font-weight: 500;
@@ -140,11 +140,6 @@ button {
     transition: all 0.2s ease;
     border: 2px solid transparent; 
     user-select: none; 
-}
-
-.button-container {
-    text-align: center;
-    margin-top: 30px;
 }
 
 .wrap {
