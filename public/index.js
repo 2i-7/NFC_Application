@@ -66,7 +66,12 @@ async function profileData(){
 
     console.log("--- 送信データ ---");
     console.log(profileData);
-    const resp = await fetch("/api/save-data", {
+
+    const currentID = localStorage.getItem("ユーザーID");
+    const queryParam = currentID ? `?id=${encodeURIComponent(currentID)}` : "";
+    console.log("リクエストURL:", `/api/save-data${queryParam}`);
+    
+    const resp = await fetch(`/api/save-data${queryParam}`, {
         method: "POST",
         headers: {
              "Content-Type": "application/json"
