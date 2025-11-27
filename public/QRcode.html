@@ -4,10 +4,8 @@
         <link href="QRcode.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="url_button" style="text-align: center">
-            <div><img class="url"id="url" src="https://api.qrserver.com/v1/create-qr-code/?data=${genelate_url}&size=100x100" alt="QRコード"/> </div>
-            <div><input class="remove_button" type="button" onclick="history.back()" value="戻る"></div>
-        </div>
+        <div><img class="url"id="url" src="https://api.qrserver.com/v1/create-qr-code/?data=${genelate_url}&size=100x100" alt="QRコード"/> </div>
+        <div><input class="return_button" type="button" onclick="history.back()" value="戻る"></div>
         <script type="text/javascript" src='./QRcode.js'></script>
     </body>
 </html>
