@@ -21,6 +21,16 @@ window.onload = async function(){
         console.error("エラーが発生しました", error);
         alert("データの取得に失敗しました");
     }
+
+    const backBtn = document.getElementById("back-btn");
+    backBtn.onclick = function() {
+        window.location.href = `index.html?id=${encodeURIComponent(userID)}`; 
+    };
+
+    const qrBtn = document.getElementById("qr-btn");
+    qrBtn.onclick = function() {
+        window.location.href = `QRcode.html?id=${encodeURIComponent(userID)}`;
+    };
 };
 
 function displayProfile(data){
@@ -41,8 +51,4 @@ function displayProfile(data){
             likes.appendChild(tag);
         }
     }
-}
-
-function goBack(){
-    window.location.href = "index.html";
 }
