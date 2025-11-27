@@ -1,6 +1,22 @@
 async function listController() {
-   list =  await fetch("/all-data")
-    .then(response => response.json())
+    let allBoxes = document.querySelectorAll('.list-tag-input');
+    let bitString = "";
+    allBoxes.forEach(function(box) {
+        if (box.checked == true) {
+            // チェックされてたら "1" 
+            bitString = bitString + "1"; 
+        } else {
+            // されてなかったら "0" 
+            bitString = bitString + "0"; 
+        }
+    });
+    if(bitString){
+        list =  await fetch(`/all-data?like=${encodeURIComponent(bitString)}`).then(response => response.json())
+    }else{
+        list =  await fetch("/all-data").then(response => response.json())
+    }
+
+    
     const likesList = ["料理","音楽","読書","スポーツ","映画鑑賞","開発"];
     console.log(list);
     const userlist = document.getElementById("userlist");

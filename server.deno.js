@@ -4,6 +4,7 @@ Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   const url = new URL(req.url);
   const id = url.searchParams.get("id");
+  const like = url.searchParams.get("like");
   console.log(pathname);
   
   // //検索機能
@@ -30,8 +31,16 @@ Deno.serve(async (req) => {
   if(req.method === "GET" && pathname === "/all-data"){
     const kv = await Deno.openKv();
     const allData=[];
+  if(like){
+  for await (const entry of kv.list({ prefix: ["userId"] })) {
+    if (entry.value.likes === like) {
+      allData.push(entry);
+    }
+  }
+  }else {
     for await (const entry of kv.list({prefix: ["userId"]})) {
       allData.push(entry);
+    }
     }
     return new Response(JSON.stringify(allData), {headers: {"Content-Type": "application/json"}});
   }
