@@ -18,5 +18,5 @@ async function listController() {
 }
 
 function openUserProfile(id) {
-    window.location.href = "display.html?id=" + encodeURIComponent(id);
+    window.location.href = `display.html?id=${encodeURIComponent(id)}`;
 }
