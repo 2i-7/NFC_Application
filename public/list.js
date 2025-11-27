@@ -10,7 +10,7 @@ async function listController() {
         userDiv.className = "user-entry";
         const name = item.value.name;
         const id = item.key[1];
-        userDiv.innerHTML = `<p> <button onclick="openUserProfile('${id}')" class="list-button"> ${name}  </button> </p> `;
+        userDiv.innerHTML = `<p class="item-center"> <button onclick="openUserProfile('${id}')" class="list-button"> ${name}  </button> </p> `;
         userlist.appendChild(userDiv);
     });
 }
@@ -23,3 +23,7 @@ function backToTop() {
     const id=  localStorage.getItem("ユーザーID");
     window.location.href = `/display.html?id=${encodeURIComponent(id)}`;
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    listController()
+});
