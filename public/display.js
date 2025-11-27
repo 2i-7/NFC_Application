@@ -10,7 +10,7 @@ window.onload = async function(){
     }
 
     try {
-        const response = await fetch(`/api/get-data?id=${userID}`);
+        const response = await fetch(`/api?id=${userID}`);
         const data = await response.json();
 
         console.log("取得したデータ", data);
