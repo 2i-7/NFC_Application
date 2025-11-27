@@ -31,6 +31,11 @@ window.onload = async function(){
     qrBtn.onclick = function() {
         window.location.href = `QRcode.html?id=${encodeURIComponent(userID)}`;
     };
+
+    const allBtn = document.getElementById("all-btn");
+    allBtn.onclick = function() {
+        window.location.href = `list.html`
+    }
 };
 
 function displayProfile(data){
