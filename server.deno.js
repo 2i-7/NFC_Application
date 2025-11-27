@@ -27,6 +27,14 @@ Deno.serve(async (req) => {
     return new Response(myUUID);
   }
 
+  if(req.method === "GET" && pathname === "/all-data"){
+    const kv = await Deno.openKv();
+    const allData=[];
+    for await (const entry of kv.list({prefix: ["userId"]})) {
+      allData.push(entry);
+    }
+    return new Response(JSON.stringify(allData), {headers: {"Content-Type": "application/json"}});
+  }
 
   return serveDir(req, {
     fsRoot: "public",
