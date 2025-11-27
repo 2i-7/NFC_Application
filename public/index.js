@@ -36,7 +36,11 @@ async function profileData(){
         });
     
     let resultText = await resp.text();
-    console.log(resultText);
+    console.log("生のサーバー応答:", resultText);
 
-    window.location.href = "display.html?result=" + encodeURIComponent(resultText);
+    resultText = resultText.trim().replace(/"/g, '');
+
+    console.log("修正後のID:", resultText);
+    
+    window.location.href = `display.html?id=${encodeURIComponent(resultText)}`;
 }
