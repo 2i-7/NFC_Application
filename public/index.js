@@ -1,3 +1,30 @@
+window.onload = function() {
+    const urlParam = new URLSearchParams(window.location.search);
+    const currentID = urlParam.get('id');
+
+    if (currentID) {
+        const savedJson = localStorage.getItem(currentID);
+        
+        if (savedJson) {
+            console.log("保存されたデータを復元します:", savedJson);
+            const savedData = JSON.parse(savedJson);
+
+            document.getElementById("name").value = savedData.name;
+            
+            const likesString = savedData.likes;
+
+            for (let i = 0; i < likesString.length; i++) {
+                if (likesString[i] === "1") {
+                    const checkbox = document.getElementById(`hobby-${i + 1}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                }
+            }
+        }
+    }
+};  
+
 async function profileData(){
     let nameInput = document.getElementById("name")
     let nameValue = nameInput.value;
@@ -27,7 +54,7 @@ async function profileData(){
 
     console.log("--- 送信データ ---");
     console.log(profileData);
-    resp = await fetch("/api/save-data", {
+    const resp = await fetch("/api/save-data", {
         method: "POST",
         headers: {
              "Content-Type": "application/json"
@@ -36,7 +63,13 @@ async function profileData(){
         });
     
     let resultText = await resp.text();
-    console.log(resultText);
+    console.log("生のサーバー応答:", resultText);
 
-    window.location.href = "display.html?result=" + encodeURIComponent(resultText);
+    resultText = resultText.trim().replace(/"/g, '');
+
+    console.log("修正後のID:", resultText);
+
+    localStorage.setItem(resultText, JSON.stringify(profileData));
+
+    window.location.href = `display.html?id=${encodeURIComponent(resultText)}`;
 }

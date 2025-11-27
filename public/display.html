@@ -7,7 +7,7 @@
     <title>プロフィール画面</title>
 </head>
 <body>
-    <div class="result-screen" class="profile-container">
+    <div class="result-screen profile-container">
         <h1>プロフィール詳細</h1>
 
         <div class="result-box">
@@ -16,9 +16,12 @@
         </div>
         
         <h3>好きなこと</h3>
-        <div id="display-hobbies" class="tag-container"></div>
+        <div id="display-likes" class="tag-container"></div>
 
-        <a href="goBack()" class="back-link">プロフィールを編集する</a>
+        <button id="back-btn" class="back-link">プロフィールを編集する</button>   
+        <button id="qr-btn" onclick="qrPage()">自分のQRコードを表示する</button>
+
+        <script src="display.js"></script>
     </div>
 </body>
 </html>
