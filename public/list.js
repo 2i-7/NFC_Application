@@ -1,7 +1,7 @@
 async function listController() {
    list =  await fetch("/all-data")
     .then(response => response.json())
-
+    const likesList = ["料理","音楽","読書","スポーツ","映画鑑賞","開発"];
     console.log(list);
     const userlist = document.getElementById("userlist");
     userlist.innerHTML = "";
@@ -10,9 +10,7 @@ async function listController() {
         userDiv.className = "user-entry";
         const name = item.value.name;
         const id = item.key[1];
-        const like = item.value.like;
-        
-        userDiv.innerHTML = `<p> <button onclick="openUserProfile('${id}')" class="list-button"><strong>Name:</strong> ${name}  </button> </p> `;
+        userDiv.innerHTML = `<p class="item-center"> <button onclick="openUserProfile('${id}')" class="list-button"> ${name}  </button> </p> `;
         userlist.appendChild(userDiv);
     });
 }
@@ -20,3 +18,12 @@ async function listController() {
 function openUserProfile(id) {
     window.location.href = `display.html?id=${encodeURIComponent(id)}`;
 }
+
+function backToTop() {
+    const id=  localStorage.getItem("ユーザーID");
+    window.location.href = `/display.html?id=${encodeURIComponent(id)}`;
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    listController()
+});
