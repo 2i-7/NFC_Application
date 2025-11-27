@@ -145,10 +145,17 @@ button {
 }
 
 #qr-btn {
-    background-color: #007bff;
+    background-color: #6c757d;
 }
 #qr-btn:hover {
-    background-color: #0069d9;
+    background-color: #5a6268;
+}
+
+#all-btn {
+    background-color: #6c757d;
+}
+#all-btn:hover {
+    background-color: #5a6268;
 }
 
 span.tag-label {
