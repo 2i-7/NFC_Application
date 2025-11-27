@@ -180,10 +180,10 @@ span.tag-label {
 
 .list-button {
     display: inline-block;
-    
+    width: 300px;
     padding: 10px 18px;
     background-color: #707981;
-    color: #b9d6f3;
+    color: #ffffff;
     border-radius: 50px; 
     font-size: 14px;
     font-weight: 500;
@@ -198,7 +198,7 @@ span.tag-label {
     margin-top : 10px;
     margin-left: 10px;
     padding: 10px 18px;
-    background-color: #5e6e82;
+    background-color: #4d4a72;
     color: #43494f;
     -webkit-text-fill-color: #eef6ff;
     border-radius: 50px; 
