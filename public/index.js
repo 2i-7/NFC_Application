@@ -34,5 +34,9 @@ async function profileData(){
         },
         body: JSON.stringify(profileData),
         });
-    console.log(await resp.text());
+    
+    let resultText = await resp.text();
+    console.log(resultText);
+
+    window.location.href = "display.html?result=" + encodeURIComponent(resultText);
 }
