@@ -1,28 +1,40 @@
-window.onload = function() {
-    const urlParam = new URLSearchParams(window.location.search);
-    const currentID = urlParam.get('id');
+window.onload = async function() {
+    const currentID = localStorage.getItem("ユーザーID");
+    console.log("対象のユーザーID (LocalStorage):", currentID);
 
     if (currentID) {
-        const savedJson = localStorage.getItem(currentID);
-        
-        if (savedJson) {
-            console.log("保存されたデータを復元します:", savedJson);
-            const savedData = JSON.parse(savedJson);
-
-            document.getElementById("name").value = savedData.name;
+        try {
+            const response = await fetch(`/api?id=${currentID}`);
             
-            const likesString = savedData.likes;
+            if (response.ok) {
+                const savedData = await response.json();
+                console.log("サーバーから復元したデータ:", savedData);
 
-            for (let i = 0; i < likesString.length; i++) {
-                if (likesString[i] === "1") {
-                    const checkbox = document.getElementById(`hobby-${i + 1}`);
-                    if (checkbox) {
-                        checkbox.checked = true;
+                if (savedData.name) {
+                    document.getElementById("name").value = savedData.name;
+                }
+
+                const likesString = savedData.likes;
+                if (likesString) {
+                    for (let i = 0; i < likesString.length; i++) {
+                        if (likesString[i] === "1") {
+                            const checkbox = document.getElementById(`hobby-${i + 1}`);
+                            if (checkbox) {
+                                checkbox.checked = true;
+                            }
+                        }
                     }
                 }
+            } else {
+                console.log("データが見つかりませんでした");
             }
+        } catch (error) {
+            console.error("データの復元に失敗しました:", error);
         }
+    }else {
+        console.log("ローカルストレージにIDがありません（新規作成）");
     }
+
 };  
 
 async function profileData(){
@@ -69,7 +81,7 @@ async function profileData(){
 
     console.log("修正後のID:", resultText);
 
-    localStorage.setItem(resultText, JSON.stringify(profileData));
+    localStorage.setItem("ユーザーID", resultText);
 
     window.location.href = `display.html?id=${encodeURIComponent(resultText)}`;
 }
