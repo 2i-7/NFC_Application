@@ -165,3 +165,46 @@ span.tag-label {
     box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
 }
 
+.list-button {
+    display: inline-block;
+    margin-top : 10px;
+    margin-left: 10px;
+    padding: 10px 18px;
+    background-color: #707981;
+    color: #b9d6f3;
+    border-radius: 50px; 
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent; 
+    user-select: none; 
+}
+
+.refresh-button {
+    display: inline-block;
+    margin-top : 10px;
+    margin-left: 10px;
+    padding: 10px 18px;
+    background-color: #5e6e82;
+    color: #43494f;
+    -webkit-text-fill-color: #eef6ff;
+    border-radius: 50px; 
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent; 
+    user-select: none; 
+}
+
+.wrap {
+  display:flex;
+  flex-flow: column;
+}
+
+.item-center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

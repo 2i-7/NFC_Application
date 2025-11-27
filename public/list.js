@@ -10,11 +10,13 @@ async function listController() {
         userDiv.className = "user-entry";
         const name = item.value.name;
         const id = item.key[1];
-        userDiv.innerHTML = `<p> <button onclick="openUserProfile('${id}')"><strong>Name:</strong> ${name} </button></p> `;
+        const like = item.value.like;
+        
+        userDiv.innerHTML = `<p> <button onclick="openUserProfile('${id}')" class="list-button"><strong>Name:</strong> ${name}  </button> </p> `;
         userlist.appendChild(userDiv);
     });
 }
 
 function openUserProfile(id) {
-    window.location.href = "display.html?result=" + encodeURIComponent(id);
+    window.location.href = `display.html?id=${encodeURIComponent(id)}`;
 }

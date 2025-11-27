@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登録者リスト</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <script src="list.js"></script>
-    <div class="result-screen" class="profile-container">
-        <h1>登録者リスト</h1>
-    <button
-    onclick = "listController()">
-    更新
-    </button>
-
-    <div id="userlist">
-        
+    <div class ="wrap">
+    <div class = "item-center">
+        <h1 >登録者リスト<button class="refresh-button" onclick="listController()">更新</button> </h1>
+               
+    </div>
+    <div id="userlist"></div>
     </div>
 </body>
 </html>
