@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
     console.log("POSTデータ:", data);
     const kv = await Deno.openKv();
     //UUID生成
-    const myUUID = crypto.randomUUID();
+    const myUUID = id||crypto.randomUUID();
     console.log("Random UUID:", myUUID);
     await kv.set(["userId", `${myUUID}`], data);
     return new Response(myUUID);
