@@ -1,12 +1,17 @@
-.url_button{
-    display: flex;
-    vertical-align:middle;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+html,body{
+    height: 100%;
 }
 
-.remove_button{
+body{
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    gap:100px;
+    flex-direction:column;
+}
+
+.return_button{
     display: inline-block;
     padding: 10px 18px;
     background-color: #666;
@@ -20,6 +25,3 @@
     user-select: none; 
 }
 
-.url{
-    margin: 100px
-}
