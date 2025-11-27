@@ -109,6 +109,12 @@ button {
     user-select: none; 
 }
 
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
 .result-text {
     width: 100%;
     padding: 12px 16px;
