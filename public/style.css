@@ -213,3 +213,7 @@ span.tag-label {
   display: flex;
   flex-direction: row;
 }
+
+.center {
+  justify-content: center; /* 横中央 */
+}
